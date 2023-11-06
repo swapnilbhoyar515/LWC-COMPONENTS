@@ -1,0 +1,11 @@
+<template>
+    <lightning-card title="Image Uploader">
+        <lightning-input type="file" label="Upload Image" onchange={handleImageUpload}></lightning-input>
+        <template if:true={textString}>
+            <div class="slds-m-top_medium">
+                <p><b>Text String:</b> {textString}</p>
+                <lightning-button label="Show Text String" onclick={showTextString}></lightning-button>
+            </div>
+        </template>
+    </lightning-card>
+</template>

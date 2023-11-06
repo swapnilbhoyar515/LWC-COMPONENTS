@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="Extract Text from Image">
+        <div class="slds-p-around_medium">
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="file-upload-input">Upload Image</label>
+                <div class="slds-form-element__control">
+                    <input type="file" accept="image/*" id="file-upload-input" onchange={handleImageUpload} />
+                </div>
+            </div>
+            <template if:true={imageSrc}>
+                <div class="slds-m-top_medium">
+                    <img src={imageSrc} />
+                </div>
+            </template>
+            <template if:true={extractedText}>
+                <div class="slds-m-top_medium">
+                    <h2>Extracted Text</h2>
+                    <p>{extractedText}</p>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,15 @@
+<template>
+    <div style="background-color: blue;">
+         <template if:true={eventsCount}>
+            <div class="slds-p-horizontal_small" style="color: yellow;">
+                <h2>Events related to this account:{eventsCount}</h2> 
+            </div>
+        </template>
+        <template if:false={eventsCount}>
+            <div class="slds-p-horizontal_small">
+                <span>No events related to this account</span>
+            </div>
+        </template>
+    </div>
+
+</template>

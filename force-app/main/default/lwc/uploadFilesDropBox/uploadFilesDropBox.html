@@ -1,0 +1,176 @@
+<template>
+    <div class="slds-box">
+    <div class="slds-page-header slds-page-header_record-home">
+        <div class="slds-page-header__row">
+            <div class="slds-page-header__col-title">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-opportunity">
+                            <lightning-icon icon-name="custom:custom85" alternative-text="Agent-Home" ></lightning-icon>
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <div class="slds-page-header__name">
+                            <div class="slds-page-header__name-title">
+                                <h1>
+                                    <span class="slds-page-header__title slds-truncate">Account File Details</span>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    <ul>
+                        <li>
+                            <lightning-input type="search" value={searchValue} title="Search File" icon-name="utility:search" onchange={searchKeyword}></lightning-input>
+                        </li>
+                        <span>
+                        <li>
+                            <lightning-button-menu alternative-text="Show menu" variant="border-filled" icon-name="utility:settings">
+                                <lightning-menu-item value="MenuItemOne" label="Menu Item One"></lightning-menu-item>
+                                <lightning-menu-item value="MenuItemTwo" label="Menu Item Two"></lightning-menu-item>
+                                <lightning-menu-item value="MenuItemThree" label="Menu Item Three"></lightning-menu-item>
+                                <lightning-menu-item value="MenuItemFour" label="Menu Item Four"></lightning-menu-item>
+                            </lightning-button-menu>
+                        </li>
+                    </span>
+                     
+                </ul>
+        </div>
+    </div>
+    <div>
+
+    </div>
+    <lightning-layout multiple-rows class="slds-p-top_medium">
+        <lightning-layout-item size="3" flexibility="auto" padding="horizontal-small" class="slds-text-align_left">
+            <lightning-icon icon-name='doctype:library_folder' alternative-text='library_folder' size='medium' title='library_folder'></lightning-icon>
+            <span> Files </span>
+            
+        </lightning-layout-item>
+        
+        <lightning-layout-item size="9" flexibility="auto" padding="horizontal-small" class="slds-text-align_right">
+            <lightning-button variant="brand" label="Upload Files" onclick={customShowModalPopup} title="Download action with brand variant" icon-name="utility:upload" class="slds-m-left_x-small">
+            </lightning-button>
+            <lightning-button label="New Folder" onclick={customShowFolderPopup} title="Download action with brand variant" icon-name="utility:add" class="slds-m-left_x-small">
+            </lightning-button>
+        </lightning-layout-item>
+    </lightning-layout>
+
+    <!-- Below Code having Functionality when we Click on Upload File Button The Model Will Open-->
+    
+    <template if:true={customFormModal}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- modal header start -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={customHideModalPopup}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 class="slds-text-heading_medium slds-hyphenate">Upload Files</h2>
+                </header>
+                <!-- modal body start -->
+                <div class="slds-modal__content slds-p-around_medium">
+                        <div >
+                            <div class="slds-col slds-size_6-of-12 slds-p-horizontal--medium slds-m-bottom_medium">
+                                <lightning-file-upload label="Select File" name="fileUploader" accept={acceptedFormats} record-id={myRecordId} onuploadfinished={handleUploadFinished} multiple></lightning-file-upload>
+                            </div>
+                            <div class="slds-col slds-size_6-of-12 slds-p-horizontal--medium slds-m-bottom_medium">
+                                <lightning-button label="Preview" class="slds-p-top_medium" onclick={showPreview}></lightning-button>
+                            </div>
+                        </div>
+                        <template if:true={showDataTable}>
+                            <!-- datatable to display uploaded files -->
+                            <lightning-datatable
+                                key-field="Id"
+                                data={uploadedFiles}
+                                columns={datatableColumns}
+                                hide-checkbox-column="true">
+                            </lightning-datatable>
+                        </template>
+                </div>
+                <!-- modal footer start-->
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button--destructive" onclick={customHideModalPopup}>Cancel</button>
+                    <button class="slds-button slds-button_brand">Upload</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <!--Below Code having Functionality when we click on New Folder button The Model will open to create new folder-->
+    
+    <template if:true={customFolderModal}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- modal header start -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={customHideFolderPopup}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 class="slds-text-heading_medium slds-hyphenate">Create New Folder</h2>
+                </header>
+                <!-- modal body start -->
+                <div class="slds-modal__content slds-p-around_medium">
+                    <lightning-card>
+                        <lightning-layout multiple-rows="true">
+                          <lightning-layout-item size="4" class="slds-border_right">
+                            <ul>
+                              <li class="list-item">
+                                <img src={GoogleDrive} alternative-text="GoogleDrive" class="image-size" size="x-small"></img>
+                                Google Drive
+                              </li>
+                              <li class="list-item">
+                                <img src={DropBox} alternative-text="GoogleDrive" class="image-size" size="x-small"></img>
+                                DropBox
+                              </li>
+                              <li class="list-item">
+                                <img src={SharePoint} alternative-text="GoogleDrive" class="image-size" size="x-small"></img>
+                                Share Point
+                              </li>
+                              <li class="list-item">
+                                <img src={OneDrive} alternative-text="GoogleDrive" class="image-size" size="x-small"></img>
+                                OneDrive
+                              </li>
+                            </ul>
+                          </lightning-layout-item>
+                            <lightning-layout-item size="8" class="slds-box">
+                                <lightning-button variant="brand" label="Create Folder" title="Primary action" class="slds-align_absolute-center" onclick={handlePrimaryActionClick} ></lightning-button>
+                                <template if:true={fileInputVisible}>
+                                    <lightning-input type="text" label="Enter Folder Name" class="slds-align_absolute-center" onchange={handleFileChange}></lightning-input>
+                                    <lightning-button label="Cancel" title="Cancel" class="slds-align_absolute-center" onclick={handleCancelClick}></lightning-button>
+                                </template>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                      </lightning-card>
+                      
+                </div>
+                <!-- modal footer start-->
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button--neutral" onclick={customHideFolderPopup}>Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={customHideFolderPopup}>Create</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    
+
+
+     <!-- Files All Details DataTable-->
+    <lightning-card label="All Files DataTable" icon-name="standard:table">
+        <div class="slds-m-around_medium">
+            <lightning-datatable
+                key-field="id"
+                data={data}
+                columns={columns}
+                onrowaction={handleRowAction}>
+            </lightning-datatable>
+        </div>
+    </lightning-card>
+    
+</div>
+
+</template>

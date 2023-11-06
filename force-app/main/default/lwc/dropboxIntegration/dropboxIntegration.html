@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Account Details" icon-name="standard:account">
+        <div class="slds-p-around_medium">
+            <template if:true={accountName}>
+                <p>Account Name: {accountName}</p>
+            </template>
+            <template if:true={folderCreationStatus}>
+                <p>Folder Creation Status: {folderCreationStatus}</p>
+            </template>
+            <template if:true={selectedFileName}>
+                <p>Selected File: {selectedFileName} ({selectedFileSize})</p>
+            </template>
+            <input type="file" accept=".jpg,.jpeg,.png" onchange={handleFileChange}></input>
+            <lightning-button label="Create Folder and Upload" onclick={createFolderAndUpload} variant="brand"></lightning-button>
+        </div>
+    </lightning-card>
+</template>

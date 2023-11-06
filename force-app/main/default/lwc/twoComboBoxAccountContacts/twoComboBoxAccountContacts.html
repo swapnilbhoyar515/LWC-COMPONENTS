@@ -1,0 +1,29 @@
+<template>
+    <lightning-card>
+        <lightning-layout>
+            <lightning-layout-item size="2" medium-device-size></lightning-layout-item>
+            <lightning-layout-item size="4" medium-device-size>
+                       <lightning-combobox
+                       label="Accounts"
+                       placeholder="Search Account"
+                       options={acOptions}
+                       onchange={handleAccount}>
+
+                       </lightning-combobox>
+            </lightning-layout-item>
+            <lightning-layout-item size="1" medium-device-size></lightning-layout-item>
+            <lightning-layout-item size="4" medium-device-size>
+                    <lightning-combobox
+                    label="Related Contacts"
+                    placeholder="Select Related Contacts"
+                    options={ctOptions}
+                    onchange={handleContact}>
+
+                    
+
+                    </lightning-combobox>
+                    <p> Email Id is :{value}</p>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>

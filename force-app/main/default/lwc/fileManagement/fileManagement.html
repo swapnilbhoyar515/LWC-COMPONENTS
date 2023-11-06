@@ -1,0 +1,27 @@
+<template>
+    <div>
+        <lightning-card title=" File Upload">
+            <lightning-layout>
+                <lightning-layout-item size="12" small-device-size="6" medium-device-size="6" large-device-size="6">
+                    <lightning-input type="text" label="Filter" onchange={handleFilterChange}></lightning-input>
+                </lightning-layout-item>
+            </lightning-layout>
+            
+            <lightning-datatable
+                key-field="id"
+                data={filteredData}
+                columns={columns}
+                hide-checkbox-column="true">
+            </lightning-datatable>
+            
+            <div class="slds-m-top_medium">
+                <lightning-file-upload
+                    label="Upload Files"
+                    accept={acceptedFormats}
+                    record-id={recordId}
+                    onuploadfinished={handleUploadFinished}>
+                </lightning-file-upload>
+            </div>
+        </lightning-card>
+    </div>
+</template>

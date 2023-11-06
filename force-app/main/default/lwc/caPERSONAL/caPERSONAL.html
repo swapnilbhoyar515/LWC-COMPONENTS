@@ -1,0 +1,54 @@
+<template>
+    <div class="personal">
+    <div class="slds-box" >
+        <div class="slds-text-align_center">
+        <b><h1>Personal Details</h1></b>
+              </div>
+    <lightning-record-edit-form
+                  object-api-name={caLeadObject}
+                  record-id={recordId}
+                
+                  
+                  >
+   <div class="slds-grid slds-wrap">
+                  <div class="slds-col slds-size_1-of-1 slds-large-size_8-of-12">
+                    <lightning-input-field field-name={occupationField}></lightning-input-field>
+                </div>
+
+            </div> 
+            <div class="slds-grid slds-wrap">  
+                <div class="slds-col slds-size_1-of-1 slds-large-size_8-of-12">     
+            <lightning-input-field field-name={sourceOfIncome}></lightning-input-field>
+        </div> 
+        </div> 
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-large-size_8-of-12">
+            <lightning-input-field field-name={yearlyIncome}></lightning-input-field>
+        </div>
+        </div>
+            <div class="slds-col">
+                <lightning-radio-group label="Is customer a PEP?"
+                                        value={isPep}
+                                        options={pepOptions}
+                                        onchange={handlePEPChange}
+                                        ></lightning-radio-group>
+            </div>
+        </br>
+            <template if:true={isPEP}>
+                <div>
+                <lightning-button variant="destructive" label="Drop Lead" onclick={handleDropLead}></lightning-button>
+                
+            </div>
+</template>
+            <!-- <template  if:true={isSave}> -->
+                <div  class="slds-align_absolute-center">
+            <lightning-button variant="brand" type="submit" label="Save"></lightning-button>
+        </div>
+<!-- </template> -->
+    </lightning-record-edit-form>
+             
+               
+             
+    </div>
+</div>
+</template>

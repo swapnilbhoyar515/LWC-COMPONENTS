@@ -1,0 +1,16 @@
+<template>
+    <div class="slds-box" style="background-color: white;">
+           <lightning-record-edit-form
+             object-api-name={caLead}
+             record-id={recordId}>
+          <lightning-input-field field-name={occupation}></lightning-input-field>
+          <lightning-input-field field-name={isPEP} onchange={handlePepChange}></lightning-input-field>
+<template if:true={isShow}>
+          <lightning-button label="Drop Lead" variant="destructive" onclick={handleClick}></lightning-button>
+        </template>
+          <lightning-button class="slds-align_absolute-center" label="Save" type="submit"></lightning-button>
+         
+          
+           </lightning-record-edit-form>   
+    </div>
+</template>

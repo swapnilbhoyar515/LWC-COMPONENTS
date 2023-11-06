@@ -1,0 +1,11 @@
+<template>
+    <lightning-card>
+        <lightning-input type="search" label="Search Contact" onchange={handleChange} value={searchKey}></lightning-input>
+    </lightning-card>
+    <lightning-datatable
+    key-field="Id"
+    data={data}
+    columns={columns}>
+
+    </lightning-datatable>
+</template>

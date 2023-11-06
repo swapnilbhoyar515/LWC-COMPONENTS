@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="Combo Box-Accounts">
+       <lightning-combobox
+       label="Available Accounts"
+       placeholder="Search Accounts"
+       options={options}
+       onchange={handleChange}>
+    </lightning-combobox>
+    </lightning-card>
+    <template if:true={isVisible}>
+        <lightning-card title="Related Contacts">
+            <lightning-datatable
+            key-field="Id"
+            data ={data}
+            columns={columns}>
+
+            </lightning-datatable>
+
+        </lightning-card>
+    </template>
+</template>

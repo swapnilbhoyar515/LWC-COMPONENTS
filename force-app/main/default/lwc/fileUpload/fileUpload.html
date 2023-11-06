@@ -1,0 +1,11 @@
+<template>
+    <lightning-card title="File Upload">
+        <lightning-input type="file" onchange={handleFileChange}></lightning-input>
+        <lightning-button label="Convert to Base64" variant="brand" onclick={convertToBase64}></lightning-button>
+        <template if:true={base64Data}>
+            <lightning-card title="File Content">
+                <p>{base64Data}</p>
+            </lightning-card>
+        </template>
+    </lightning-card>
+</template>

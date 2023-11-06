@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="Display Accounts" icon-name="custom:custom10">
+       <div class="slds-m-around_medium">
+         <p class="slds-m-around_medium">Display Accounts Paginated Way</p>
+         <div style="height: 180px;">
+                <lightning-datatable
+                key-field="Id"
+                data={data}
+                columns={columns}>
+
+                </lightning-datatable>
+         </div>
+       </div>
+       <div class="slds-m-around_medium">
+          <p class="slds-m-around_medium">{startingRecord} to {endingRecord} of {totalRecordCount}. page {page} of {totalPage}</p>
+          <c-pagination-child onprevious={prevHandler} onnext={nextHandler}></c-pagination-child>
+       </div>
+    </lightning-card>
+</template>

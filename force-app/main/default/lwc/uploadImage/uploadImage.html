@@ -1,0 +1,10 @@
+<template>
+    <lightning-card>
+        <lightning-input type="file" label="Upload Image" onchange={handleImageUpload}></lightning-input>
+        <lightning-button variant="brand" label="Show Text" onclick={handleShowText}></lightning-button>
+        <div if:true={text}>
+            <h2>Text in Image:</h2>
+            <p>{text}</p>
+        </div>
+    </lightning-card>
+</template>

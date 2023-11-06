@@ -1,0 +1,19 @@
+<template>
+
+        <lightning-card title="Account Events">
+            <template if:true={events.data}>
+                <ul>
+                    <template for:each={events.data} for:item="event">
+                        <li key={event.Id}>
+                            {event.Subject}: {event.StartDateTime} - {event.EndDateTime}
+                            
+                        </li>
+                    </template>
+                </ul>
+            </template>
+            <template if:true={events.error}>
+                <p>{events.error}</p>
+            </template>
+        </lightning-card>
+    
+</template>

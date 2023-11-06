@@ -1,0 +1,19 @@
+<template>
+    <!-- lwc button -->
+    <lightning-button label={buttonLabel} variant="brand" onclick={handleShow}>
+        
+    </lightning-button>
+
+    <!-- show related contacts using datatable -->
+<template if:true={showDatatable}>
+    <div class="slds-p-top_large" style="height:200px;">
+    <lightning-datatable
+    key-field="Id"
+    data={contactData}
+    columns={columns}
+    hide-checkbox-column>
+
+    </lightning-datatable>
+</div>
+</template>
+</template>
